@@ -1,0 +1,13 @@
+export default {
+  async fetch(request) {
+    let url = new URL(request.url);
+
+    // if root domain only → redirect home
+    if (url.pathname === "/" || url.pathname === "/404.html") {
+      return Response.redirect("https://hugity.com", 302);
+    }
+
+    // Otherwise, pass request through to GitHub Pages
+    return fetch(request);
+  }
+}
